@@ -10,6 +10,6 @@ ENV GOROOT=/usr/local/go/
 ENV PATH=$PATH:/usr/local/go/bin/
 
 # ADD make
-RUN apt-get install -y --reinstall build-essential
+RUN apt-get install -y make
 
 RUN go version
