@@ -1,6 +1,6 @@
 ---
 pipeline:
-  publish:
+  publish-latest:
     image: plugins/docker
     repo: "nytimes/golang-gcloud-sdk:latest"
     secrets:
@@ -10,7 +10,7 @@ pipeline:
       event: [push]
       branch: master
 
-  publish:
+  publish-tag:
     image: plugins/docker
     repo: "nytimes/golang-gcloud-sdk:${DRONE_TAG}"
     secrets:
