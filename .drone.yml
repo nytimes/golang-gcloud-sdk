@@ -1,9 +1,12 @@
+---
 pipeline:
   publish:
     image: plugins/docker
-    repo: "nytimes/golang-gcloud-sdk:${DRONE_TAG}"
+    repo: nytimes/golang-gcloud-sdk
     secrets:
       - docker_username
       - docker_password
+    auto_tag: true
     when:
-      event: [push]
+      event: [tag, push]
+      branch: master
