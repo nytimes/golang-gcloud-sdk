@@ -1,4 +1,3 @@
----
 pipeline:
   publish-latest:
     image: plugins/docker
