@@ -1,0 +1,12 @@
+---
+pipeline:
+  publish:
+    image: plugins/docker
+    repo: nytimes/golang-gcloud-sdk
+    secrets:
+      - docker_username
+      - docker_password
+    auto_tag: true
+    when:
+      event: [tag, push]
+      branch: master
