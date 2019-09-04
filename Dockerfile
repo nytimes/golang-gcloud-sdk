@@ -1,5 +1,5 @@
 # ADD go
-FROM golang:1.11 as golang
+FROM golang:1.12 as golang
 
 FROM google/cloud-sdk:slim
 
@@ -12,8 +12,8 @@ ENV PATH=$PATH:/usr/local/go/bin/
 # ADD make
 RUN apt-get install -y make
 
-# ADD java + emulator
+# ADD java + emulator + appengine
 RUN apt-get install -y default-jre
-RUN apt-get install -y google-cloud-sdk-datastore-emulator
+RUN apt-get install -y google-cloud-sdk-datastore-emulator google-cloud-sdk-app-engine-go
 
 RUN go version
