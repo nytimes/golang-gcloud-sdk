@@ -1,5 +1,5 @@
 # ADD go
-FROM golang:1.15 as golang
+FROM golang:1.14 as golang
 
 FROM google/cloud-sdk:slim
 
