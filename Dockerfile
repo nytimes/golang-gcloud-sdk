@@ -1,7 +1,7 @@
 # ADD go
-FROM golang:1.15 as golang
+FROM golang:1.16 as golang
 
-FROM google/cloud-sdk:slim
+FROM gcr.io/google.com/cloudsdktool/cloud-sdk:slim
 
 COPY --from=golang /usr/local/go/ /usr/local/go/
 
