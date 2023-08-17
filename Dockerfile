@@ -1,4 +1,4 @@
-FROM golang:1.20 as golang
+FROM golang:1.21.0 as golang
 
 FROM gcr.io/google.com/cloudsdktool/cloud-sdk:443.0.0-slim
 
