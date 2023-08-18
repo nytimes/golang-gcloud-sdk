@@ -12,5 +12,5 @@ RUN go version
 # ADD make and java
 RUN apt-get install -y make default-jre
 
-# ADD datastore emulator and appengine
-RUN apt-get install -y google-cloud-cli-datastore-emulator google-cloud-cli-app-engine-go
+# ADD App Engine, Datastore emulator, and Firestore emulator
+RUN apt-get install -y google-cloud-cli-app-engine-go google-cloud-cli-datastore-emulator google-cloud-cli-firestore-emulator
