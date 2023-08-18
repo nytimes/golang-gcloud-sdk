@@ -2,11 +2,10 @@ name: Build and Push Docker Image
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
     tags:
       - '*'
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
   build:
@@ -48,20 +47,18 @@ jobs:
       with:
         context: .
         platforms: linux/amd64
-        push: ${{ github.event_name != 'pull_request' }}
+        push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
 
-          # commenting out until we get the webhook secret
-          #- name: Send GitHub Action trigger data to Slack workflow
-          #  id: slack
-          #  uses: slackapi/slack-github-action@v1.23.0
-          #  if: ${{ github.event_name != 'pull_request' }}
-          #  with:
-          #    payload: |
-          #      {
-          #        "text": "GitHub Actions Build Result: ${{ job.status }}\n triggered_by: ${{ github.actor }}\n job url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\n commit url: ${{ github.event.head_commit.url }}"
-          #      }
-          #  env:
-          #    # webhook for #dv-cdp-alerts
-          #    SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    - name: Send GitHub Action trigger data to Slack workflow
+      id: slack
+      uses: slackapi/slack-github-action@v1.23.0
+      if: ${{ github.event_name != 'pull_request' }}
+      with:
+        payload: |
+          {
+            "text": "GitHub Actions Build Result: ${{ job.status }}\n triggered_by: ${{ github.actor }}\n job url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\n commit url: ${{ github.event.head_commit.url }}"
+          }
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
