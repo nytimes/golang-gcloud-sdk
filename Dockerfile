@@ -1,6 +1,6 @@
-FROM golang:1.22.0 as golang
+FROM golang:1.23 as golang
 
-FROM gcr.io/google.com/cloudsdktool/cloud-sdk:463.0.0
+FROM gcr.io/google.com/cloudsdktool/cloud-sdk:491.0.0
 
 COPY --from=golang /usr/local/go/ /usr/local/go/
 
